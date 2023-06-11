@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+	let dialog: HTMLDialogElement;
 	let textarea: HTMLTextAreaElement;
 
 	onMount(async () => {
@@ -13,9 +14,12 @@
 			]
 		});
 		tribute.attach(textarea);
+		dialog.showModal();
 	});
 </script>
 
 <h1>Welcome to SvelteKit</h1>
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-<textarea bind:this={textarea} />
+<dialog bind:this={dialog}>
+	<textarea bind:this={textarea} />
+</dialog>
