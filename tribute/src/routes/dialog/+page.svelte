@@ -11,7 +11,8 @@
 			values: [
 				{ key: 'Phil Heartman', value: 'pheartman' },
 				{ key: 'Gordon Ramsey', value: 'gramsey' }
-			]
+			],
+			menuContainer: dialog
 		});
 		tribute.attach(textarea);
 		dialog.showModal();
