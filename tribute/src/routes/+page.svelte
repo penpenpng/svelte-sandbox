@@ -6,7 +6,7 @@
 	onMount(async () => {
 		const { default: Tribute } = await import('tributejs');
 
-		var tribute = new Tribute({
+		const tribute = new Tribute({
 			values: [
 				{ key: 'Phil Heartman', value: 'pheartman' },
 				{ key: 'Gordon Ramsey', value: 'gramsey' }
