@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+	let textarea: HTMLTextAreaElement;
+
 	onMount(async () => {
 		const { default: Tribute } = await import('tributejs');
 
@@ -10,13 +12,10 @@
 				{ key: 'Gordon Ramsey', value: 'gramsey' }
 			]
 		});
-		const textarea = document.getElementById('example');
-		if (textarea !== null) {
-			tribute.attach(textarea);
-		}
+		tribute.attach(textarea);
 	});
 </script>
 
 <h1>Welcome to SvelteKit</h1>
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-<textarea id="example" />
+<textarea bind:this={textarea} />
