@@ -30,6 +30,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"rx-nostr": "^2.2.0"
+		"rx-nostr": "^2.2.0",
+		"rxjs": "^7.8.1"
 	}
 }
