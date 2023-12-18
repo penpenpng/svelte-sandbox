@@ -1,23 +1,18 @@
 <script lang="ts">
-	import { batch, createRxBackwardReq, createRxNostr } from 'rx-nostr';
-	import { bufferTime } from 'rxjs';
+	import { createRxBackwardReq, createRxNostr } from 'rx-nostr';
 	import { onMount } from 'svelte';
+
+	const relays = ['wss://yabu.me/', 'wss://nos.lol/'];
 
 	const rxNostr = createRxNostr();
 	const rxReq = createRxBackwardReq();
 
-	// // OK
-	// rxNostr.use(rxReq).subscribe((packet) => {
-	// 	console.log('[packet]', packet);
-	// });
-
-	// NG
-	rxNostr.use(rxReq.pipe(bufferTime(1000, null, 10), batch())).subscribe((packet) => {
+	rxNostr.use(rxReq).subscribe((packet) => {
 		console.log('[packet]', packet);
 	});
 
 	onMount(async () => {
-		await rxNostr.switchRelays(['wss://yabu.me/']);
+		rxNostr.setDefaultRelays(relays);
 
 		console.log('[emit]', rxNostr.getAllRelayState());
 		rxReq.emit([
