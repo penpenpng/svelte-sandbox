@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import Add from '$lib/components/Add.svelte';
+	import List from '$lib/components/List.svelte';
+</script>
+
+<h1>IndexedDB</h1>
+
+<h2>Add</h2>
+<Add />
+
+<h2>List</h2>
+<List />
