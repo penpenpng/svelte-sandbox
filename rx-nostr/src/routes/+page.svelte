@@ -31,4 +31,7 @@
 	<li>
 		<a href="/reconnect">Reconnect</a>
 	</li>
+	<li>
+		<a href="/yield">Yield</a>
+	</li>
 </ul>
