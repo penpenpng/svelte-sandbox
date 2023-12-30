@@ -1,12 +1,13 @@
 <script lang="ts">
-	import type { Event } from 'nostr-typedef';
+	import { kind0Store } from '$lib/store';
 	import { batch, createRxBackwardReq, createRxNostr } from 'rx-nostr';
 	import { bufferTime } from 'rxjs';
 	import { onMount } from 'svelte';
+	import { get } from 'svelte/store';
 
 	let counter = 0;
 	let pubkey = '087c51f1926f8d3cb4ff45f53a8ee2a8511cfe113527ab0e87f9c5821201a61e';
-	let events: Event[] = [];
+	$: events = [...$kind0Store].map(([, event]) => event);
 
 	const rxNostr = createRxNostr();
 	const kind0Req = createRxBackwardReq();
@@ -16,8 +17,9 @@
 
 	rxNostr.use(kind0Req.pipe(bufferTime(1000, null, 10), batch())).subscribe(({ event }) => {
 		console.log(`[kind ${event.kind}]`, event);
-		events.push(event);
-		events = events;
+		const $store = get(kind0Store);
+		$store.set(event.pubkey, event);
+		kind0Store.set($store);
 	});
 
 	rxNostr.use(kind3Req).subscribe(({ event }) => {
