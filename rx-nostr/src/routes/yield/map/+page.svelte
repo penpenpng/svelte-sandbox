@@ -46,6 +46,8 @@
 	});
 </script>
 
+<a href="/yield">../</a>
+
 <section>
 	<button on:click={() => counter++}>+1</button>
 	<div>{counter}</div>

@@ -1,12 +1,14 @@
 <script lang="ts">
+	import { onDestroy, onMount } from 'svelte';
 	import type { Event } from 'nostr-typedef';
 	import { batch, createRxBackwardReq, createRxNostr } from 'rx-nostr';
 	import { bufferTime } from 'rxjs';
-	import { onMount } from 'svelte';
 
 	let counter = 0;
 	let pubkey = '087c51f1926f8d3cb4ff45f53a8ee2a8511cfe113527ab0e87f9c5821201a61e';
 	let events: Event[] = [];
+
+	const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
 
 	const rxNostr = createRxNostr();
 	const kind0Req = createRxBackwardReq();
@@ -20,7 +22,7 @@
 		events = events;
 	});
 
-	rxNostr.use(kind3Req).subscribe(({ event }) => {
+	rxNostr.use(kind3Req).subscribe(async ({ event }) => {
 		console.log(`[kind ${event.kind}]`, event);
 		for (const pubkey of event.tags.filter(([t]) => t === 'p').map(([, pubkey]) => pubkey)) {
 			kind0Req.emit([
@@ -30,10 +32,12 @@
 					limit: 1
 				}
 			]);
+			await sleep(0);
 		}
 	});
 
 	onMount(() => {
+		console.log('[on mount]');
 		console.log('[kind 3 REQ]');
 		kind3Req.emit({
 			kinds: [3],
@@ -42,7 +46,14 @@
 		});
 		kind3Req.over();
 	});
+
+	onDestroy(() => {
+		console.log('[on destroy]');
+		rxNostr.dispose();
+	});
 </script>
+
+<a href="/yield">../</a>
 
 <section>
 	<button on:click={() => counter++}>+1</button>
