@@ -10,5 +10,6 @@ jobs:
       run:
         working-directory: rx-nostr-test
     steps:
+      - uses: actions/checkout@v4
       - run: npm install
       - run: node index.js
