@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import jsQR from 'jsqr';
 
 	let video: HTMLVideoElement | undefined;
+
+	const canvas = document.createElement('canvas');
+	const ctx = canvas.getContext('2d');
 
 	onMount(async () => {
 		if (video === undefined) {
@@ -14,8 +18,24 @@
 		video.srcObject = stream;
 		video.onloadedmetadata = (e) => {
 			video?.play();
+			checkImage();
 		};
 	});
+
+	function checkImage() {
+		if (ctx === null || video === undefined) {
+			return;
+		}
+
+		ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+		const imageDate = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		const code = jsQR(imageDate.data, canvas.width, canvas.height);
+		if (code === null) {
+			setTimeout(() => checkImage(), 200);
+		} else {
+			alert(code.data);
+		}
+	}
 </script>
 
 <svelte:head>
