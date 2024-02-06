@@ -4,13 +4,15 @@
 
 	let video: HTMLVideoElement | undefined;
 
-	const canvas = document.createElement('canvas');
-	const ctx = canvas.getContext('2d');
+	let canvas: HTMLCanvasElement | undefined;
+	let ctx: CanvasRenderingContext2D | null;
 
 	onMount(async () => {
 		if (video === undefined) {
 			return;
 		}
+		canvas = document.createElement('canvas');
+		ctx = canvas.getContext('2d');
 		const stream = await navigator.mediaDevices.getUserMedia({
 			audio: false,
 			video: { facingMode: { exact: 'environment' } }
