@@ -25,7 +25,7 @@
 	});
 
 	function checkImage() {
-		if (ctx === null || video === undefined) {
+		if (canvas === undefined || ctx === null || video === undefined) {
 			return;
 		}
 
