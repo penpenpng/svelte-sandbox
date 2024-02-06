@@ -34,7 +34,7 @@
 
 <div>{JSON.stringify(video)}</div>
 
-<video bind:this={video} autoplay />
+<video bind:this={video} autoplay playsinline />
 
 <style>
 	video {
