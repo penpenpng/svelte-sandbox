@@ -19,6 +19,23 @@
 	});
 </script>
 
-<div class="reader">
-	<video bind:this={video} class="reader-video" autoplay />
-</div>
+<svelte:head>
+	<style>
+		html,
+		body {
+			height: 100%;
+		}
+	</style>
+</svelte:head>
+
+<h1>PWA Sandbox</h1>
+
+<video bind:this={video} class="reader-video" autoplay />
+
+<style>
+	video {
+		width: 100%;
+		height: 100%;
+		object-fit: fill;
+	}
+</style>
