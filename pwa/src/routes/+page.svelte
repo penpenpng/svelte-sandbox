@@ -4,7 +4,6 @@
 	let video: HTMLVideoElement | undefined;
 
 	onMount(async () => {
-		console.log('[on mount]');
 		if (video === undefined) {
 			return;
 		}
@@ -23,19 +22,25 @@
 	<style>
 		html,
 		body {
-			height: 100%;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 80%;
 		}
 	</style>
 </svelte:head>
 
 <h1>PWA Sandbox</h1>
 
-<video bind:this={video} class="reader-video" autoplay />
+<div>{JSON.stringify(video)}</div>
+
+<video bind:this={video} autoplay />
 
 <style>
 	video {
 		width: 100%;
 		height: 100%;
 		object-fit: fill;
+		background-color: aliceblue;
 	}
 </style>
