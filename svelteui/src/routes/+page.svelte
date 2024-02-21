@@ -40,4 +40,8 @@
 	li + li {
 		border-top: 1px solid lightgray;
 	}
+
+	:global(.svelteui-Menu-body) {
+		padding: 0;
+	}
 </style>
