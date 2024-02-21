@@ -31,9 +31,11 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@emoji-mart/data": "^1.1.2",
 		"@svelteuidev/composables": "^0.15.4",
 		"@svelteuidev/core": "^0.15.4",
 		"@tabler/icons-svelte": "^2.47.0",
+		"emoji-kitchen-mart": "^6.0.4",
 		"radix-icons-svelte": "^1.2.1"
 	}
 }
