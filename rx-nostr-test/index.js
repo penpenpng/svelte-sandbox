@@ -1,9 +1,9 @@
-import 'websocket-polyfill';
+import WebSocket from 'ws';
 import { createRxBackwardReq, createRxNostr } from 'rx-nostr';
 
 const relays = ['wss://yabu.me/'];
 
-const rxNostr = createRxNostr();
+const rxNostr = createRxNostr({ websocketCtor: WebSocket });
 rxNostr.setDefaultRelays(relays);
 
 const rxReq = createRxBackwardReq();

@@ -1,7 +1,7 @@
 {
   "type": "module",
   "dependencies": {
-    "rx-nostr": "^2.4.1",
-    "websocket-polyfill": "^0.0.3"
+    "rx-nostr": "^2.6.1",
+    "ws": "^8.16.0"
   }
 }
