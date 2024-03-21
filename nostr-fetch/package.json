@@ -31,6 +31,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"nostr-fetch": "^0.15.0"
+		"nostr-fetch": "^0.15.1"
 	}
 }
