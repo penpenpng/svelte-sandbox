@@ -18,4 +18,4 @@
 
 <h1>Performance</h1>
 
-<a href="../">..</a>
+<a href="../">Top</a>
