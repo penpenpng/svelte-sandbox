@@ -11,4 +11,7 @@
 	<li>
 		<a href="/performance">Performance</a>
 	</li>
+	<li>
+		<a href="/empty">Empty</a>
+	</li>
 </ul>
