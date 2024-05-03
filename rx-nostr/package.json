@@ -15,6 +15,7 @@
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@types/ws": "^8.5.10",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
 		"eslint": "^8.28.0",
@@ -31,7 +32,8 @@
 	"type": "module",
 	"dependencies": {
 		"nostr-typedef": "^0.8.0",
-		"rx-nostr": "^2.3.0",
-		"rxjs": "^7.8.1"
+		"rx-nostr": "^2.6.2",
+		"rxjs": "^7.8.1",
+		"ws": "^8.16.0"
 	}
 }
