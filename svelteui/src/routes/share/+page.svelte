@@ -1,8 +1,10 @@
 <script lang="ts">
 	async function share(): Promise<void> {
-		const data: ShareData = { text: 'test', url: 'https://example.com/', title: 'title' };
-		console.log('[share]', navigator.canShare === undefined, navigator.canShare(data));
-		await navigator.share(data);
+		const data: ShareData = { url: 'https://example.com/', title: 'title' };
+		console.log('[share]', data);
+		if (navigator.canShare !== undefined && navigator.canShare(data)) {
+			await navigator.share(data);
+		}
 	}
 </script>
 
