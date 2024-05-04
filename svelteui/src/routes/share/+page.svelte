@@ -6,8 +6,16 @@
 			await navigator.share(data);
 		}
 	}
+
+	async function copy() {
+		await navigator.clipboard.writeText('https://example.com/copy');
+	}
 </script>
 
 <h1>Share</h1>
 
-<button on:click={share}>Share</button>
+{#if navigator.canShare !== undefined}
+	<button on:click={share}>Share</button>
+{:else}
+	<button on:click={copy}>Copy</button>
+{/if}
