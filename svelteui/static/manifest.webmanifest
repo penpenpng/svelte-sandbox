@@ -1,0 +1,22 @@
+{
+    "name": "Svelte UI sandbox",
+    "shortname": "Svelte UI sandbox",
+    "start_url": ".",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "favicon.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ],
+    "share_target": {
+        "action": "/shared",
+        "method": "GET",
+        "params": {
+            "text": "text",
+            "title": "title",
+            "url": "url"
+        }
+    }
+}
