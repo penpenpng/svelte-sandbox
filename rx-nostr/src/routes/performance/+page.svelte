@@ -1,19 +1,40 @@
 <script lang="ts">
-	import { rxNostr } from '$lib/Constants';
 	import type { Event } from 'nostr-typedef';
-	import { createRxBackwardReq, uniq } from 'rx-nostr';
+	import { createRxBackwardReq, createRxNostr, uniq } from 'rx-nostr';
+	import { createVerificationServiceClient } from 'rx-nostr-crypto';
 	import { onDestroy, onMount } from 'svelte';
 
 	const events = new Map<string, Event>();
+
+	const verificationClient = createVerificationServiceClient();
+	const rxNostr = createRxNostr({
+		verifier: verificationClient.verify
+	});
+
+	rxNostr.setDefaultRelays([
+		'wss://yabu.me/',
+		'wss://nos.lol/',
+		'wss://r.kojira.io/',
+		// 'wss://nostream.ocha.one/',
+		'wss://relay-jp.nostr.wirednet.jp/',
+		'wss://nostr.holybea.com/',
+		'wss://nostrja-kari.heguro.com/',
+		'wss://relay.nostr.band/',
+		'wss://nostr.fediverse.jp/',
+		'wss://relay-jp.nostr.moctane.com/',
+		'wss://nrelay-jp.c-stellar.net/',
+		'wss://riray.nostr1.com/',
+		'wss://ren.nostr1.com/',
+		'wss://nostr.mom/'
+	]);
 
 	const req = createRxBackwardReq();
 	const subscription = rxNostr
 		.use(req)
 		.pipe(uniq())
 		.subscribe({
-			next: ({ event, from }) => {
-				console.log(from, event);
-				events.set(event.id, event);
+			next: ({ event }) => {
+				console.log('ok', event.id);
 			},
 			complete: () => console.log('[count]', events.size)
 		});

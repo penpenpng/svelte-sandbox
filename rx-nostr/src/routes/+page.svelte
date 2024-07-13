@@ -3,15 +3,9 @@
 
 <ul>
 	<li>
-		<a href="/reconnect">Reconnect</a>
+		<a href="./performance">Performance</a>
 	</li>
 	<li>
-		<a href="/yield">Yield</a>
-	</li>
-	<li>
-		<a href="/performance">Performance</a>
-	</li>
-	<li>
-		<a href="/empty">Empty</a>
+		<a href="./empty">Empty</a>
 	</li>
 </ul>
