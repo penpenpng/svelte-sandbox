@@ -1,15 +1,21 @@
 <script lang="ts">
 	import type { Event } from 'nostr-typedef';
 	import { createRxBackwardReq, createRxNostr, uniq } from 'rx-nostr';
-	import { createVerificationServiceClient, verifier } from 'rx-nostr-crypto';
+	import { createNoopClient, createVerificationServiceClient } from 'rx-nostr-crypto';
 	import { onDestroy, onMount } from 'svelte';
+	import workerUrl from '$lib/worker?worker&url';
+	import { browser } from '$app/environment';
 
 	const events = new Map<string, Event>();
 
-	const verificationClient = createVerificationServiceClient();
+	const verificationClient = browser
+		? createVerificationServiceClient({ worker: new Worker(workerUrl, { type: 'module' }) })
+		: createNoopClient();
+	verificationClient.start();
+
 	const rxNostr = createRxNostr({
 		connectionStrategy: 'lazy-keep',
-		verifier: verificationClient.verify
+		verifier: verificationClient.verifier
 		// verifier: verifier
 	});
 
