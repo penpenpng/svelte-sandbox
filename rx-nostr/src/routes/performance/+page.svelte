@@ -7,6 +7,7 @@
 	import { browser } from '$app/environment';
 
 	const events = new Map<string, Event>();
+	let count = 0;
 
 	const verificationClient = browser
 		? createVerificationServiceClient({ worker: new Worker(workerUrl, { type: 'module' }) })
@@ -16,7 +17,6 @@
 	const rxNostr = createRxNostr({
 		connectionStrategy: 'lazy-keep',
 		verifier: verificationClient.verifier
-		// verifier: verifier
 	});
 
 	rxNostr.setDefaultRelays([
@@ -41,9 +41,8 @@
 		.use(req)
 		.pipe(uniq())
 		.subscribe({
-			next: ({ event, from }) => {
-				console.log('ok', from, event.id);
-				events.set(event.id, event);
+			next: () => {
+				count = count + 1;
 			},
 			complete: () => console.log('[count]', events.size)
 		});
@@ -61,5 +60,7 @@
 </script>
 
 <h1>Performance</h1>
+
+<div>{count}</div>
 
 <a href="/">Top</a>
